@@ -18,14 +18,13 @@
             />
 
         <TextView
-            android:id="@+id/widget_heading"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:gravity="center_vertical"
             android:text="Internship of Day"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
-            />
+             />
     </LinearLayout>
 
     <ListView

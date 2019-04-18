@@ -73,8 +73,7 @@ public class InternshalaWidgetActivityConfigureActivity extends Activity {
         setResult(RESULT_CANCELED);
 
         setContentView(R.layout.internshala_widget_activity_configure);
-        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
-        findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
+        findViewById(R.id.widget_heading).setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.
         Intent intent = getIntent();

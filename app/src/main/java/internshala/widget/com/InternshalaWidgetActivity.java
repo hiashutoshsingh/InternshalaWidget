@@ -1,8 +1,13 @@
 package internshala.widget.com;
 
+import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
 
 public class InternshalaWidgetActivity extends AppWidgetProvider {
@@ -13,9 +18,14 @@ public class InternshalaWidgetActivity extends AppWidgetProvider {
         CharSequence widgetText = InternshalaWidgetActivityConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.internshala_widget_activity);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        views.setTextViewText(R.id.widget_heading, widgetText);
 
         // Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget(appWidgetId, views);
+        Intent launchMain = new Intent(context, MainActivity.class);
+        PendingIntent pendingMainIntent = PendingIntent.getActivity(context, 0, launchMain, 0);
+        views.setOnClickPendingIntent(R.id.widget, pendingMainIntent);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.widget_listView);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
@@ -25,6 +35,7 @@ public class InternshalaWidgetActivity extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -44,5 +55,12 @@ public class InternshalaWidgetActivity extends AppWidgetProvider {
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
+        views.setRemoteAdapter(R.id.widget_listView,
+                new Intent(context, StockWidgetService.class));
+    }
+
 }
 
