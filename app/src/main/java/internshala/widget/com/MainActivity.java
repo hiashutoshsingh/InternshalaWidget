@@ -15,12 +15,17 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        ItemData itemsData[] = { new ItemData("Internship-1",R.drawable.ic_launcher_foreground),
+        ItemData itemsData[] = {
+                new ItemData("Internship-1",R.drawable.ic_launcher_foreground),
                 new ItemData("Internship-2",R.drawable.ic_launcher_foreground),
                 new ItemData("Internship-3",R.drawable.ic_launcher_foreground),
                 new ItemData("Internship-4",R.drawable.ic_launcher_foreground),
                 new ItemData("Internship-5",R.drawable.ic_launcher_foreground),
-                new ItemData("Internship-6",R.drawable.ic_launcher_foreground)};
+                new ItemData("Internship-6",R.drawable.ic_launcher_foreground),
+                new ItemData("Internship-7",R.drawable.ic_launcher_foreground),
+                new ItemData("Internship-8",R.drawable.ic_launcher_foreground),
+                new ItemData("Internship-9",R.drawable.ic_launcher_foreground),
+                new ItemData("Internship-10",R.drawable.ic_launcher_foreground)};
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
